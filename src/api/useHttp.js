@@ -10,7 +10,7 @@ export const req = () => {
   }
 
   return axios.create({
-    baseURL: process.env.REACT_APP_BASE_URL,
+    baseURL: 'https://authbyavazov.herokuapp.com/api',
     headers,
   });
 };
