@@ -7,40 +7,50 @@ import {
   LOG_OUT,
 } from "../constants/authConstants";
 import { toast } from "react-toastify";
+import { HideLoad, ShowLoad } from "./loadAction";
 
 export const LoginReq = (data, f) => async (dispatch) => {
+  dispatch(ShowLoad());
   try {
     const response = await api.doPost("/auth/login", data);
     localStorage.setItem(TOKEN, response.data.token);
+    dispatch(HideLoad());
+    dispatch({ type: LOGIN_USER, payload: response.data })
     f();
-    return dispatch({ type: LOGIN_USER, payload: response.data });
+    return;
   } catch (error) {
-    toast.error(error.response.data.message);
-  }
-};
-
-export const RegisterReq = (data, f) => async (dispatch) => {
-  try {
-    const res = await api.doPost("/auth/register", data);
-    f();
-    return dispatch({ type: REGISTER_USER, payload: res.data });
-  } catch (error) {
+    dispatch(HideLoad());
     toast.error(error.response.data?.message);
   }
 };
 
-export const LogOut = (f) => (dispatch) => {
+export const RegisterReq = (data, f) => async (dispatch) => {
+  dispatch(ShowLoad());
+  try {
+    const res = await api.doPost("/auth/register", data);
+    f();
+    dispatch(HideLoad());
+    return dispatch({ type: REGISTER_USER, payload: res.data });
+  } catch (error) {
+    dispatch(HideLoad());
+    toast.error(error.response.data?.message);
+  }
+};
+
+export const LogOut = () => (dispatch) => {
   localStorage.removeItem(TOKEN);
-  f();
   return dispatch({ type: LOG_OUT, payload: { user: null, token: null } });
 };
 
-export const TestToken = (f) => async (dispatch) => {
+export const TestToken = () => async (dispatch) => {
+  dispatch(ShowLoad());
   try {
     const { data } = await api.doGet("/auth");
+    dispatch(HideLoad());
     return dispatch({ type: TEST_TOKEN, payload: data });
   } catch (error) {
-    dispatch(LogOut(f))
-    console.log(error.response.data.message);
+    dispatch(LogOut());
+    dispatch(HideLoad());
+    toast.error(error.response.data?.message);
   }
 };

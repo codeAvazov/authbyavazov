@@ -3,7 +3,7 @@ import { LOGIN_USER, LOG_OUT, TEST_TOKEN } from "../constants/authConstants";
 
 const initialState = {
   user: null,
-  token: null,
+  token: localStorage.getItem(TOKEN),
 };
 
 export const authReducer = (state = initialState, action = {}) => {
@@ -15,6 +15,7 @@ export const authReducer = (state = initialState, action = {}) => {
       };
     case LOG_OUT:
       return {
+        ...initialState,
         ...action.payload,
       };
     case TEST_TOKEN:

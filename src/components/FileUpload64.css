@@ -1,0 +1,98 @@
+.uploadWrapper {
+  position: fixed;
+  top: -150%;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  margin-top: 0;
+  transition: 0.4s ease-in-out;
+  background-color: #00000060;
+  z-index: 2;
+  backdrop-filter: blur(15px);
+}
+
+.uploadWrapper.uploadOpen {
+  top: 0;
+}
+
+.uploadWrapper .wrapperBlock {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2rem;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 4px;
+  align-items: center;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 .uploadBtn {
+  background-color: #00000099;
+  backdrop-filter: blur(5px);
+  border-radius: 6px;
+  padding: 10px 2rem;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 3px 2px 15px 2px #ffffff50;
+  transition: .4s ease-in-out;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 .uploadBtn i {
+  font-size: 24px;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 .uploadBtn:hover {
+    transform: translateY(2px);
+}
+
+.uploadWrapper .wrapperBlock .filebase64 input {
+  background-color: red;
+  display: none;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 .blockImg {
+  width: 300px;
+  height: 250px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.uploadWrapper .wrapperBlock .filebase64 .blockImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.uploadWrapper .wrapperBlock .btnlar {
+  width: max-content;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  margin-left: auto;
+}
+
+.uploadWrapper .wrapperBlock .btnlar button {
+  background-color: #ffffff;
+  box-shadow: 2px 0 15px 0px #ffffff;
+  border: none;
+  padding: 10px 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+
+.uploadWrapper .wrapperBlock .btnlar button:hover {
+  transform: translateY(5px);
+}
+
+@media all and (max-width : 556px) {
+    .uploadWrapper .wrapperBlock .filebase64 .blockImg {
+        width: 250px;
+        height: 200px;
+    }
+}

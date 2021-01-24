@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthOptions } from "./AuthOptions";
 
 export const Navbar = () => {
+
   return (
     <nav>
       <div>
@@ -12,9 +13,7 @@ export const Navbar = () => {
       </div>
       <div className="nav_list">
         <div></div>
-        <div>
-          <AuthOptions />
-        </div>
+        <AuthOptions />
       </div>
     </nav>
   );

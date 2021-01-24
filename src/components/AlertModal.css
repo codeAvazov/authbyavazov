@@ -1,0 +1,87 @@
+.alertModal {
+  position: fixed;
+  top: 0%;
+  left: 100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  transition: .4s ease-in-out;
+  background-color: #00000070;
+  backdrop-filter: blur(15px);
+}
+
+.alertModal.Open {
+  left: 0;
+}
+
+.alertModal .alertBlock {
+  padding: 2rem 2.5rem 1rem;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 3rem;
+  width: 40%;
+  background-color: #ffffff;
+  box-shadow: rgba(127, 173, 224, 0.4) 6.5px 6.5px,
+    rgba(127, 173, 224, 0.2) 13px 13px, rgba(127, 173, 224, 0.1) 19.5px 19.5px;
+}
+
+.alertModal .alertBlock .alertMessage {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.alertModal .alertBlock .alertBtns {
+  width: max-content;
+  margin-left: auto;
+}
+
+.alertModal .alertBlock .alertBtns .alertBtn {
+  border: none;
+  padding: 10px 2rem;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #1db459;
+  color: #ffffff;
+  font-weight: 500;
+  transition: 0.4s ease-in-out;
+  box-shadow: rgba(50, 50, 93, 0.3) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.alertModal .alertBlock .alertBtns .alertBtn:active {
+  transform: scale(0.9);
+}
+
+.alertModal .alertBlock .alertBtns .alertBtn:focus {
+  outline: none;
+}
+
+.alertModal .alertBlock .alertBtns .ml {
+  margin-left: 10px;
+  background-color: #c30101;
+}
+
+@media all and (max-width: 768px) {
+  .alertModal .alertBlock {
+    padding: 1.5rem 1.5rem 1rem;
+    width: 90%;
+    grid-row-gap: 2rem;
+    box-shadow: rgba(127, 173, 224, 0.25) 4px 4px,
+    rgba(127, 173, 224, 0.15) 8px 8px, rgba(127, 173, 224, 0.08) 12px 12px;
+  }
+
+  .alertModal .alertBlock .alertMessage {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .alertModal .alertBlock .alertBtns .alertBtn {
+    padding: 7.5px 1.1rem;
+    font-size: 12px;
+    font-weight: normal;
+  }
+}

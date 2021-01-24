@@ -10,7 +10,7 @@ export const req = () => {
   }
 
   return axios.create({
-    baseURL: 'https://authbyavazov.herokuapp.com/api',
+    baseURL: "http://localhost:5000/api",
     headers,
   });
 };
@@ -27,6 +27,10 @@ export const doPatch = (url, data) => {
   return req().patch(url, data);
 };
 
-export const doDelete = (url, params = {}) => {
+export const doPut = (url, data) => {
+  return req().put(url, data);
+};
+
+export const doDelete = (url, params) => {
   return req().delete(url, params);
 };

@@ -6,28 +6,37 @@ import { Register } from "./components/Register";
 import { Cabinet } from "./components/Cabinet";
 import { PrivateRoute } from "./utilits/PrivateRoute";
 import { Navbar } from "./components/Navbar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { TestToken } from "./redux/actions/authActions";
 import { useHistory } from "react-router";
+import { Loader } from "./components/Loader";
 
 export const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const loader = useSelector((s) => s.load);
+  const {token} = useSelector((s) => s.auth);
 
   useEffect(() => {
-    dispatch(TestToken(() => history.push("/")));
-  }, [dispatch, history]);
+    if (token) dispatch(TestToken());
+  }, [dispatch, history, token]);
 
   return (
     <div>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <PrivateRoute exact path="/cabinet" component={Cabinet} />
-        <Redirect from="*" to="/" />
-      </Switch>
+      {loader ? (
+        <Loader />
+      ) : (
+        <div>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <PrivateRoute exact path="/cabinet" component={Cabinet} />
+            <Redirect from="*" to="/" />
+          </Switch>
+        </div>
+      )}
     </div>
   );
 };

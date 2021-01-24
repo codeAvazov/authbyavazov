@@ -4,6 +4,8 @@ import { validateNewUser } from "../middleware/validateNewUser";
 import { useDispatch } from "react-redux";
 import { RegisterReq } from "../redux/actions/authActions";
 import { useHistory } from "react-router";
+import { FormComponent } from "./FormComponent";
+import { REGISTER } from "../utilits/constants";
 
 const obj = {
   email: "",
@@ -51,60 +53,13 @@ export const Register = () => {
 
   return (
     <div className="register i-c ">
-      <form onSubmit={registerUser} className="form mt-2">
-        <div>
-          <h1 className="t-c">Register User</h1>
-        </div>
-        <div className="formGroup">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={newUser.email}
-            onChange={change}
-            className="inputForm"
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={newUser.name}
-            onChange={change}
-            className="inputForm"
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={newUser.password}
-            onChange={change}
-            className="inputForm"
-          />
-        </div>
-        <div className="formGroup">
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={newUser.confirmPassword}
-            onChange={change}
-            className="inputForm"
-          />
-        </div>
-        <div className="btn">
-          <button type="submit">
-            Register
-          </button>
-        </div>
-      </form>
+      <FormComponent
+        submit={registerUser}
+        user={newUser}
+        changeData={change}
+        title={"Register"}
+        type={REGISTER}
+      />
     </div>
   );
 };
