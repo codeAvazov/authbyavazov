@@ -10,7 +10,8 @@ export const req = () => {
   }
 
   return axios.create({
-    baseURL: "https://authbyavazov.herokuapp.com/api",
+    baseURL:
+      "https://cors-anywhere.herokuapp.com/https://authbyavazov.herokuapp.com/api",
     headers,
   });
 };

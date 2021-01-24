@@ -1,4 +1,4 @@
-@import '../node_modules/remixicon/fonts/remixicon.css';
+@import "../node_modules/remixicon/fonts/remixicon.css";
 
 * {
   margin: 0;
@@ -238,8 +238,11 @@ nav .auth-options button:focus {
 }
 
 .cabinet .userCard .userImg img {
+  position: absolute;
   width: 100%;
   height: 100%;
+  top: 0;
+  left: 0;
   object-fit: cover;
   border-radius: 8px 0 0 8px;
 }
@@ -258,13 +261,13 @@ nav .auth-options button:focus {
 }
 
 .cabinet .userCard .userImg .editImage i {
-  transition: .4s ease-in-out;
+  transition: 0.4s ease-in-out;
   color: #ffffff;
   font-size: 18px;
 }
 
 .cabinet .userCard .userImg .editImage:hover i {
-  color: #2A9DF4;
+  color: #2a9df4;
   font-size: 22px;
 }
 
@@ -334,6 +337,12 @@ nav .auth-options button:focus {
 
 /*  */
 
+@media all and (max-width: 992px) {
+  .cabinet .userCard {
+    margin-top: 4rem;
+  }
+}
+
 @media all and (max-width: 768px) {
   .home,
   .login,
@@ -348,12 +357,17 @@ nav .auth-options button:focus {
   .cabinet .userCard {
     width: 85%;
     grid-template-columns: 1fr;
-    grid-template-rows: 220px 200px;
+    height: 70%;
+    margin-top: 4rem;
     justify-content: unset;
   }
 
   .cabinet .userCard .userImg {
-    border-radius: 8px 8px 0 0;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .cabinet .userCard .userImg img {
+    border-radius: 6px 6px 0 0;
   }
 
   .cabinet .userCard .userData {
@@ -425,12 +439,25 @@ nav .auth-options button:focus {
 
   .cabinet .userCard {
     width: 90%;
-    margin-top: 3rem;
-    grid-template-rows: 180px 160px;
+    height: 60%;
+    grid-template-rows: 55% 45%;
+  }
+
+  .cabinet .userCard .userImg {
+    border-radius: 8px 8px 0 0;
+    position: relative;
+  }
+
+  .cabinet .userCard .userImg img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .cabinet .userCard .userData {
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
   }
 
   .cabinet .userCard .userData .name {

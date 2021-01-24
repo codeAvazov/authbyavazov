@@ -53,6 +53,6 @@ export const UploadFile = (id, body) => async (dispatch) => {
     return;
   } catch (error) {
     dispatch(HideLoad());
-    toast.error(error.response.data?.message);
+    console.log(error.response);
   }
 };
