@@ -7,9 +7,10 @@ export const deleteUser = (id) => async (dispatch) => {
   dispatch(ShowLoad());
   try {
     const { data } = await api.doDelete(`/auth/delete/${id}`);
-    dispatch(HideLoad());
     toast.success(data.message);
-    return dispatch(LogOut());
+    dispatch(LogOut());
+    dispatch(HideLoad());
+    return;
   } catch (error) {
     dispatch(HideLoad());
     toast.error(error.response.data?.message);
@@ -53,6 +54,6 @@ export const UploadFile = (id, body) => async (dispatch) => {
     return;
   } catch (error) {
     dispatch(HideLoad());
-    console.log(error.response);
+    toast.error(error.response.data?.message);
   }
 };

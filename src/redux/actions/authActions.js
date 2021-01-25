@@ -14,9 +14,9 @@ export const LoginReq = (data, f) => async (dispatch) => {
   try {
     const response = await api.doPost("/auth/login", data);
     localStorage.setItem(TOKEN, response.data.token);
-    dispatch(HideLoad());
-    dispatch({ type: LOGIN_USER, payload: response.data })
+    dispatch({ type: LOGIN_USER, payload: response.data });
     f();
+    dispatch(HideLoad());
     return;
   } catch (error) {
     dispatch(HideLoad());
@@ -29,8 +29,9 @@ export const RegisterReq = (data, f) => async (dispatch) => {
   try {
     const res = await api.doPost("/auth/register", data);
     f();
+    dispatch({ type: REGISTER_USER, payload: res.data });
     dispatch(HideLoad());
-    return dispatch({ type: REGISTER_USER, payload: res.data });
+    return;
   } catch (error) {
     dispatch(HideLoad());
     toast.error(error.response.data?.message);
@@ -46,11 +47,12 @@ export const TestToken = () => async (dispatch) => {
   dispatch(ShowLoad());
   try {
     const { data } = await api.doGet("/auth");
+    dispatch({ type: TEST_TOKEN, payload: data });
     dispatch(HideLoad());
-    return dispatch({ type: TEST_TOKEN, payload: data });
+    return;
   } catch (error) {
     dispatch(LogOut());
-    dispatch(HideLoad());
     toast.error(error.response.data?.message);
+    dispatch(HideLoad());
   }
 };

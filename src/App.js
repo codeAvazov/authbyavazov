@@ -10,12 +10,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { TestToken } from "./redux/actions/authActions";
 import { useHistory } from "react-router";
 import { Loader } from "./components/Loader";
+import { NotFoundPage } from "./components/NotFoundPage";
 
 export const App = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loader = useSelector((s) => s.load);
-  const {token} = useSelector((s) => s.auth);
+  const { token } = useSelector((s) => s.auth);
 
   useEffect(() => {
     if (token) dispatch(TestToken());
@@ -33,7 +34,8 @@ export const App = () => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <PrivateRoute exact path="/cabinet" component={Cabinet} />
-            <Redirect from="*" to="/" />
+            <Route exact path="/notFound" component={NotFoundPage} />
+            <Redirect from="*" to="/notFound" />
           </Switch>
         </div>
       )}

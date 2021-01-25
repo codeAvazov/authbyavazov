@@ -4,8 +4,10 @@ import { deleteUser, UploadFile } from "../redux/actions/userActions";
 import { EditDataUser, EditPasswordUser } from "../redux/actions/userActions";
 import { AlertModal } from "./AlertModal";
 import { EditModal } from "./EditModal";
+import { validateEditDataUser } from "../middleware/validateEditDataUser";
 import img from "../assets/add-boy-user.svg";
 import { FileUpload64 } from "./FileUpload64";
+import { toast } from "react-toastify";
 
 export const Cabinet = () => {
   const user = useSelector((s) => s.auth.user);
@@ -78,9 +80,15 @@ export const Cabinet = () => {
         ? { email, name }
         : { password, confirmPassword, oldPassword };
 
-    dispatch(
-      choose === 1 ? EditDataUser(user.id, obj) : EditPasswordUser(user.id, obj)
-    );
+    const test = validateEditDataUser(obj, choose);
+
+    if (test) {
+      dispatch(
+        choose === 1
+          ? EditDataUser(user.id, obj)
+          : EditPasswordUser(user.id, obj)
+      );
+    }
   };
 
   const toggleUploadModal = () => {
@@ -88,6 +96,10 @@ export const Cabinet = () => {
   };
 
   const changeFiles = (files) => {
+    if (files.file.size > 1024820) {
+      toast.warning("File size must be less than 1mb");
+      return;
+    }
     setFile(files);
   };
 

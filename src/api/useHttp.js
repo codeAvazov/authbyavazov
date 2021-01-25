@@ -11,7 +11,8 @@ export const req = () => {
 
   return axios.create({
     baseURL:
-      "https://cors-anywhere.herokuapp.com/https://authbyavazov.herokuapp.com/api",
+      // "https://cors-anywhere.herokuapp.com/https://authbyavazov.herokuapp.com/api",
+      "http://localhost:5000/api",
     headers,
   });
 };
